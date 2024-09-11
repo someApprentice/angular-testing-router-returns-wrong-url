@@ -30,15 +30,11 @@ describe('AppComponent', () => {
   it('should navigate to routed page', async () => {
     await harness.navigateByUrl('', MainComponent);
 
-    let router = TestBed.inject(Router);
-    let navigateSpy = spyOn(router, 'navigate');
-
     let hostElement: HTMLElement = harness.routeNativeElement!;
     let goButton: HTMLButtonElement = hostElement.querySelector('button')!;
 
     goButton.click();
 
-    expect(navigateSpy).toHaveBeenCalledWith(['routed']); // pass
-    expect(router.url).toEqual('/routed'); // Expected '/' to equal '/routed'.
+    expect(TestBed.inject(Router).url).toEqual('/routed'); // Expected '/' to equal '/routed'.
   });
 });
